@@ -1,0 +1,77 @@
+---
+# tasks file for api_practice
+- name: Getting the definition of awesome
+  uri:
+    url: https://api.chucknorris.io/jokes/random
+    method: GET
+  register: results
+- debug:
+    var: results
+
+- name: getting repos from nexus
+  uri:
+    url: http://192.168.7.42:8081/service/rest/v1/repositories
+    method: GET
+  register: results
+- debug:
+    var: results.json[7]
+
+# The below tasks work
+- name: posting new user
+  uri:
+    url: http://192.168.7.42:8081/service/rest/v1/security/users
+    user: admin
+    password: Renegade187!
+    method: POST
+    force_basic_auth: yes
+    body_format: json
+    return_content: true
+    headers:
+      accept: application/json
+      Content-Type: application/json
+    body:
+      {
+        "userId": "5",
+        "firstName": "ansible2",
+        "lastName": "test2",
+        "emailAddress": "tes2t@gmail.com",
+        "password": "Renegade187!",
+        "status": "active",
+        "roles": ["admin"],
+      }
+
+- name: posting new repo
+  uri:
+    url: http://192.168.7.42:8081/service/rest/v1/repositories/docker/hosted
+    user: admin
+    password: Renegade187!
+    method: POST
+    force_basic_auth: yes
+    body_format: json
+    status_code: [201, 202]
+    return_content: true
+    headers:
+      accept: application/json
+      Content-Type: application/json
+    body:
+      {
+        "name": "ansible-test",
+        "online": true,
+        "storage":
+          {
+            "blobStoreName": "default",
+            "strictContentTypeValidation": true,
+            "writePolicy": "allow_once",
+            "latestPolicy": true,
+          },
+        "cleanup": { "policyNames": ["string"] },
+        "component": { "proprietaryComponents": true },
+        "docker":
+          {
+            "v1Enabled": false,
+            "forceBasicAuth": true,
+            "httpPort": 8097,
+            "httpsPort": 8098,
+            "subdomain": "docker-a",
+          },
+      }

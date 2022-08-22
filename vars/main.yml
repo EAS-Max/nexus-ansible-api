@@ -1,0 +1,45 @@
+---
+# vars file for api_practice
+data:
+  {
+    repoType: "proxy",
+    id: "somerepo1",
+    name: "Some Repo Namel",
+    browseable: true,
+    indexable: true,
+    notFoundCacheTTL: 1440,
+    artifactMaxAge: -1,
+    metadataMaxAge: 1440,
+    itemMaxAge: 1440,
+    repoPolicy: "RELEASE",
+    provider: "maven2",
+    providerRole: "org.sonatype.nexus.proxy.repository.Repository",
+    downloadRemoteIndexes: true,
+    autoBlockActive: true,
+    fileTypeValidation: true,
+    exposed: true,
+    checksum Policy: "WARN",
+  }
+
+post:
+  {
+    "name": "ansible-test",
+    "online": true,
+    "storage":
+      {
+        "blobStoreName": "default",
+        "strictContentTypeValidation": true,
+        "writePolicy": "allow_once",
+        "latestPolicy": true,
+      },
+    "cleanup": { "policyNames": ["string"] },
+    "component": { "proprietaryComponents": true },
+    "docker":
+      {
+        "v1Enabled": false,
+        "forceBasicAuth": true,
+        "httpPort": 8082,
+        "httpsPort": 8083,
+        "subdomain": "docker-a",
+      },
+  }

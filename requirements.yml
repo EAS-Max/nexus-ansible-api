@@ -1,0 +1,4 @@
+- src: https://github.com/ansible-ThoTeam/nexus3-oss
+  scm: git
+  version: master
+  name: nexus-oss

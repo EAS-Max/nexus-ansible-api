@@ -1,0 +1,6 @@
+- hosts: max-api
+  vars_files:
+    - vars/main.yml
+  tasks:
+    - name: api
+      include_tasks: tasks/main.yml

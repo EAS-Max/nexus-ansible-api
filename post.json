@@ -1,0 +1,21 @@
+{
+    "name": "ansible-test",
+    "online": true,
+    "storage":
+      {
+        "blobStoreName": "default",
+        "strictContentTypeValidation": true,
+        "writePolicy": "allow_once",
+        "latestPolicy": true
+      },
+    "cleanup": { "policyNames": ["string"] },
+    "component": { "proprietaryComponents": true },
+    "docker":
+      {
+        "v1Enabled": false,
+        "forceBasicAuth": true,
+        "httpPort": 8082,
+        "httpsPort": 8083,
+        "subdomain": "docker-a"
+      }
+  }

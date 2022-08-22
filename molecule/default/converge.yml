@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  # tasks:
+  #   - name: "Include acme.api_practice"
+  #     include_role:
+  #       name: "acme.api_practice"
+
+- import_playbook: ../../playbook.yml
